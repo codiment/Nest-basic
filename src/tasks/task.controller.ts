@@ -1,10 +1,33 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import { TasksService } from './tasks.service';
 
-@Controller({})
+@Controller('tasks')
+export class TaskController {
 
-export class TaskController{
-    @Get('/tasks')
-    getAllTask(){
-        return "All tasks"
-    }
+  constructor(private tasksService: TasksService) {}
+
+  @Get()
+  getAllTask() {
+    return this.tasksService.getTasks();
+  }
+
+  @Post()
+  createTask() {
+    return 'Creando tareas'
+  }
+
+  @Put()
+  updateTask() {
+    return 'Actualizando tareas'
+  }
+
+  @Delete()
+  deleteTask() {
+    return 'Eliminando tareas'
+  }
+
+  @Patch()
+  updateTaskStatus() {
+    return 'Actualizando tarea especifica'
+  }
 }
